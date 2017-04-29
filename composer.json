@@ -1,6 +1,6 @@
 {
     "name": "jinexus/zend-notification",
-    "description": "JiNexus/Zend-Notification is an extension from selected zend components that helps you quickly send an email with responsive templates or create your own email templates.",
+    "description": "JiNexus/Zend-Notification provides a simple, chainable wrapper for creating and sending responsive email templates using some zend components (such as zend-mail and zend-view).",
     "license": "BSD-3-Clause",
     "authors": [
         {
