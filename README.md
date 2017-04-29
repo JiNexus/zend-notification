@@ -50,4 +50,4 @@ Donations are **greatly appreciated!**
 
 A man has to code for food. A man must do what he feels needs to be done, even if it is dangerous or undesirable.
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=9LN52DYMN2QCQ&lc=PH&item_name=JiNexus&item_number=zend%2dnotification&currency_code=PHP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5CYMGYYYS98PN)
