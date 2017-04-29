@@ -1,0 +1,32 @@
+{
+    "name": "jinexus/zend-notification",
+    "description": "A short description of what your package does",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Jimvirle Calago",
+            "email": "jimvirle@gmail.com"
+        }
+    ],
+    "keywords": [
+        "zf2",
+        "zf3",
+        "mail",
+        "notification"
+    ],
+    "homepage": "https://github.com/JiNexus/zend-notification",
+    "autoload": {
+        "psr-4": {
+            "JiNexus\\Zend\\Notification\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^5.5 || ^7.0",
+        "zendframework/zend-mail": "^2.7.3",
+        "zendframework/zend-view": "^2.9.0",
+        "zendframework/zend-config": "^3.1.0",
+        "zendframework/zend-servicemanager": "^3.3.0",
+        "zendframework/zend-filter": "^2.7.1"
+    },
+    "prefer-stable": true
+}
