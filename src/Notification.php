@@ -111,7 +111,7 @@ class Notification
      * @param array $attachments
      * @return Notification
      */
-    public function setAttachments(array $attachments = [])
+    public function setAttachments($attachments = [])
     {
         $this->attachments = $attachments;
         return $this;
@@ -205,7 +205,7 @@ class Notification
      * @param $config
      * @return Notification
      */
-    public function setConfig(array $config = [])
+    public function setConfig($config = [])
     {
         $this->config = new Config($config);
         return $this;
@@ -250,7 +250,7 @@ class Notification
      * @param array $footerData
      * @return Notification
      */
-    public function setFooterData(array $footerData = [])
+    public function setFooterData($footerData = [])
     {
         $this->footerData = $footerData;
         return $this;
@@ -348,7 +348,7 @@ class Notification
      * @param array $fileTransportOptions
      * @return Notification
      */
-    public function setFileTransportOptions(array $fileTransportOptions = [])
+    public function setFileTransportOptions($fileTransportOptions = [])
     {
         $this->fileTransportOptions = new Config($fileTransportOptions);
         return $this;
@@ -366,7 +366,7 @@ class Notification
      * @param array $headerData
      * @return Notification
      */
-    public function setHeaderData(array $headerData = [])
+    public function setHeaderData($headerData = [])
     {
         $this->headerData = $headerData;
         return $this;
@@ -467,7 +467,7 @@ class Notification
      * @param  null|string|array|\Traversable $sendmailTransportParameters OPTIONAL (Default: null)
      * @return Notification
      */
-    public function setSendmailTransportParameters(array $sendmailTransportParameters = [])
+    public function setSendmailTransportParameters($sendmailTransportParameters = [])
     {
         $this->sendmailTransportParameters = $sendmailTransportParameters;
         return $this;
@@ -494,7 +494,7 @@ class Notification
      * @param array $smtpTransportOptions
      * @return Notification
      */
-    public function setSmtpTransportOptions(array $smtpTransportOptions = [])
+    public function setSmtpTransportOptions($smtpTransportOptions = [])
     {
         $options = new Config($smtpTransportOptions);
         $this->smtpTransportOptions = $options->toArray();
@@ -551,7 +551,7 @@ class Notification
      * @param array $templateData
      * @return Notification
      */
-    public function setTemplateData(array $templateData = [])
+    public function setTemplateData($templateData = [])
     {
         $this->templateData = $templateData;
         return $this;
