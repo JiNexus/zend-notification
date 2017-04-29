@@ -22,6 +22,28 @@ $ composer require jinexus/zend-notification
 
 This will install `JiNexus/Zend-Notification` and all required dependencies. `JiNexus/Zend-Notification` requires PHP 5.5.0 or latest.
 
+## Basic Usage
+
+A basic usage consists of one or more recipients, a subject, a body/content and a sender. 
+To send such a mail using `JiNexus/Zend-Notification`, do the following:
+
+```php
+<?php 
+use JiNexus\Zend\Notification\Notification;
+
+$notification = new Notification();
+$notification->setFrom('sender@example.com', 'Sender Name')
+    ->setTo('recipient@example.com', 'Recipient Name')
+    ->setSubject('Sample Subject')
+    ->setContent(
+        'This is the body/content of the email, you can write here your thoughts.' .
+        'I\'ve got everything yet nothing to write, for my thoughts are in a constant fight.'
+    )
+    ->send();
+```
+
+By default `JiNexus/Zend-Notification` is using [Zend\Mail\Transport\Sendmail](https://docs.zendframework.com/zend-mail/transport/intro/#quick-start) to send an email.
+
 ## Contributing
 
 Before contributing please read the [Contributing File](CONTRIBUTING.md) for details.
