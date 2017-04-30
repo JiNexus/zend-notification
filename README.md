@@ -77,10 +77,10 @@ use JiNexus\Zend\Notification\Notification;
 $notification = new Notification();
 $notification->setFrom('sender@example.com', 'Sender Name')
     ->setTo(['recipientOne@example.com', 'recipientTwo@example.com'], 'Common Name')
-    ->setSubject('Your character defines you')
+    ->setSubject('What is sense of superiority?')
     ->setContent(
-        'There are two things that defines you. Your patience to learn when you don\'t know anything, 
-        and your attitude to share when you know everything.'
+        'The fact that I don\'t believe that I\'m better than anyone else 
+        gives me an inevitable sense of superiority.'
     )
     ->send();
 ```
@@ -94,10 +94,10 @@ use JiNexus\Zend\Notification\Notification;
 $notification = new Notification();
 $notification->setFrom('sender@example.com', 'Sender Name')
     ->addTo(['recipientOne@example.com', 'recipientTwo@example.com'], 'Common Name')
-    ->setSubject('Your character defines you')
+    ->setSubject('I\'m from 90\'s')
     ->setContent(
-        'There are two things that defines you. Your patience to learn when you don\'t know anything, 
-        and your attitude to share when you know everything.'
+        'Let me tell you about a magical time. The rock stars were suicidal, 
+        the rappers were criminals, and wrestling was real. It was the 90\'s﻿'
     )
     ->send();
 ```
@@ -152,6 +152,43 @@ $notification->addFrom('kheven@example.com', 'Kheven Bitoon');
 $notification->addFrom('rogelio@example.com', 'Rogelio Carrillo');
 $notification->setSender('jimvirle@example.com', 'Jimvirle Calago');
 ```
+
+##### By default `JiNexus/Notification` provides an HTML content upon sending the email. And there are instances that you may want to choose a Text content. To do that you have to set the type of your email by:
+
+```php
+<?php 
+/*
+ * This will set your email to a text content.
+ */
+$notification->setType('text');
+```
+
+**Or**
+
+```php
+<?php 
+/*
+ * This will set your email to an html content.
+ */
+$notification->setType('html');
+```
+
+### Adding Attachments To Email
+
+`JiNexus/Zend-Notification` directly provides you the ability to create and use mail attachments.
+
+```php
+<?php 
+/*
+ * You can also set multiple attachments.
+ */
+$notification->setAttachments([
+    'absolute-path-of-the-file.jpg',
+    'this-is-a-multiple-attachment.pdf',
+]);
+```
+
+
 
 ## To Do's
 
