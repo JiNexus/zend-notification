@@ -4,7 +4,7 @@
 [![Latest Stable Version](https://poser.pugx.org/jinexus/zend-notification/v/stable)](https://packagist.org/packages/jinexus/zend-notification)
 [![Total Downloads](https://poser.pugx.org/jinexus/zend-notification/downloads)](https://packagist.org/packages/jinexus/zend-notification)
 [![License](https://poser.pugx.org/jinexus/zend-notification/license)](https://packagist.org/packages/jinexus/zend-notification)
-[![Donate](https://img.shields.io/badge/Donate-Paypal-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5CYMGYYYS98PN)
+[![Donate](https://img.shields.io/badge/donate-Paypal-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5CYMGYYYS98PN)
 
 `JiNexus/Zend-Notification` is a component that extends and utilized the components of 
 `Zend-Mail`, `Zend-View`, `Zend-Config`, `Zend-Servicemanager` and `Zend-Filter` to generate 
@@ -45,6 +45,64 @@ $notification->setFrom('sender@example.com', 'Sender Name')
 ```
 
 By default `JiNexus/Zend-Notification` is using [Zend\Mail\Transport\Sendmail](https://docs.zendframework.com/zend-mail/transport/intro/#quick-start) to send an email.
+
+### Adding Multiple Recipients
+
+**Method 1: Method chaining the `addTo()` method**
+
+```php
+<?php 
+use JiNexus\Zend\Notification\Notification;
+
+$notification = new Notification();
+$notification->setFrom('sender@example.com', 'Sender Name')
+    ->setTo('recipient-one@example.com', 'Recipient One')
+    ->addTo('recipient-two@example.com', 'Recipient Two')
+    ->addTo('recipient-three@example.com', 'Recipient Three')
+    ->setSubject('Your character defines you')
+    ->setContent(
+        'There are two things that defines you. Your patience to learn when you don\'t know anything, 
+        and your attitude to share when you know everything.'
+    )
+    ->send();
+```
+
+**Method 2: Passing array to `setTo()` method**
+
+```php
+<?php 
+use JiNexus\Zend\Notification\Notification;
+
+$notification = new Notification();
+$notification->setFrom('sender@example.com', 'Sender Name')
+    ->setTo(['recipient-one@example.com', 'recipient-two@example.com'], 'Common Name')
+    ->setSubject('Your character defines you')
+    ->setContent(
+        'There are two things that defines you. Your patience to learn when you don\'t know anything, 
+        and your attitude to share when you know everything.'
+    )
+    ->send();
+```
+
+**Method 3: Passing array to `addTo()` method**
+
+```php
+<?php 
+use JiNexus\Zend\Notification\Notification;
+
+$notification = new Notification();
+$notification->setFrom('sender@example.com', 'Sender Name')
+    ->addTo(['recipient-one@example.com', 'recipient-two@example.com'], 'Common Name')
+    ->setSubject('Your character defines you')
+    ->setContent(
+        'There are two things that defines you. Your patience to learn when you don\'t know anything, 
+        and your attitude to share when you know everything.'
+    )
+    ->send();
+```
+
+*Note: The difference between `setTo()` and `addTo()` method is that 
+`setTo()` overwrites the existing data while `addTo()` appends to the existing data*
 
 ## Contributing
 
