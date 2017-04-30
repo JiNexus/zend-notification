@@ -195,7 +195,7 @@ class Notification
     public function getConfig()
     {
         if ($this->config == null) {
-            $this->config = new Config(include __DIR__ . '/config/notification.global.php');
+            $this->config = new Config(include dirname(__DIR__) . '/config/notification.global.php');
         }
 
         return $this->config;
