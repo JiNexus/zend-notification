@@ -1,8 +1,10 @@
 # JiNexus/Zend-Notification
 
+[![Build Status](https://travis-ci.org/JiNexus/zend-notification.svg?branch=master)](https://travis-ci.org/JiNexus/zend-notification)
 [![Latest Stable Version](https://poser.pugx.org/jinexus/zend-notification/v/stable)](https://packagist.org/packages/jinexus/zend-notification)
 [![Total Downloads](https://poser.pugx.org/jinexus/zend-notification/downloads)](https://packagist.org/packages/jinexus/zend-notification)
 [![License](https://poser.pugx.org/jinexus/zend-notification/license)](https://packagist.org/packages/jinexus/zend-notification)
+[![Donate](https://img.shields.io/badge/Donate-Paypal-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5CYMGYYYS98PN)
 
 `JiNexus/Zend-Notification` is a component that extends and utilized the components of 
 `Zend-Mail`, `Zend-View`, `Zend-Config`, `Zend-Servicemanager` and `Zend-Filter` to generate 
