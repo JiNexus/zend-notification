@@ -153,7 +153,7 @@ $notification->addFrom('rogelio@example.com', 'Rogelio Carrillo');
 $notification->setSender('jimvirle@example.com', 'Jimvirle Calago');
 ```
 
-##### By default `JiNexus/Notification` provides an HTML content upon sending the email. And there are instances that you may want to choose a Text content. To do that you have to set the type of your email by:
+##### By default `JiNexus/Zend-Notification` provides an HTML content upon sending the email. And there are instances that you may want to choose a Text content. To do that you have to set the type of your email by:
 
 ```php
 <?php 
@@ -191,7 +191,8 @@ $notification->setAttachments([
 ## Advance Usage
 
 Advance usage allows you to assemble your own layout and set the right template to be your email's content. 
-`JiNexus/Notification` uses `Cerberus-Responsive` as a sample base email template. 
+`JiNexus/Zend-Notification` uses `Cerberus-Responsive` as a sample base email template 
+(You can replace it by your own choice, later when we tackle about `setConfig()` method). 
 Refer to the `src/view/layout` and `src/view/template`
 
 To do this all you have is follow the example below:
@@ -208,7 +209,7 @@ $notification->setFrom('sender@example.com', 'Sender Name')
     ->send();
 ```
 
-By default `JiNexus/Notification` will look to the built in configuration under `config/notification.global.php`
+By default `JiNexus/Zend-Notification` will look to the built in configuration under `config/notification.global.php`
 to feed the `assemble()` required configs. To overwrite this default configuration, you have to call the
 `setConfig()` method and pass your own array of configs.
 
@@ -295,11 +296,80 @@ Now you can parse the data to your `any-email-template.phtml`, by:
 
 *Must: `setHeaderData()`, `setFooterData()` and `setTemplateData()` must be called before the `assemble()` method.*
 
+### Transports and setting up their own parameters or options.
+
+Transports take care of the actual delivery of mail. Typically, you only need to worry 
+about two possibilities: using PHP's native mail() functionality, which uses system 
+resources to deliver mail, or using the SMTP protocol for delivering mail via a remote server.
+
+You can define your own transport by using `setTransport()` method.
+
+Available Values:
+
+    - sendmail
+    - smtp
+    - inMemory
+    
+#### Sendmail
+
+By default if you don't define your transport `JiNexus/Zend-Notification` will automatically
+use sendmail. However if by any chance you want to pass a parameter to the sendmail, you can do it by:
+
+```php
+<?php 
+$notification->setTransport('sendmail');
+$notification->setSendmailTransportParameters('-freturn_to_me@example.com');
+$notification->send();
+```
+
+**Chose your transport wisely**
+
+Although the sendmail transport is the transport that requires least configuration, 
+it may not be suitable for your production environment. This is because emails sent using 
+the sendmail transport will be more often delivered to SPAM-boxes. This can partly be 
+remedied by using the SMTP Transport combined with an SMTP server that has an overall good 
+reputation. Additionally, techniques such as SPF and DKIM may be employed to ensure 
+even more email messages are delivered successfully.
+
+#### SMTP
+
+Below is a sample configuration of SMTP transport:
+
+```php
+<?php 
+$notification->setTransport('smtp');
+$notification->setSmtpTransportOptions([
+    'host' => 'smtp.gmail.com',
+    'port' => 587,
+    'connection_class'  => 'plain',
+    'connection_config' => [
+        'username' => 'jinexus.zend@gmail.com',
+        'password' => 'my-app-password',
+        'ssl' => 'tls',
+    ],
+]);
+$notification->send();
+```
+
+#### InMemory
+
+The InMemory transport is primarily of interest when in development or when testing.
+
+Below is a sample configuration of InMemory transport:
+
+```php
+<?php 
+$notification->setTransport('inMemory');
+$notification->send();
+```
+
 ## To Do's
 
 - Create a Unit Test
 - Add Get and Set Encoding extensions
 - Add Get and Set Headers extensions
+- Add support for File transport
+- Add getLastMessage() for InMemory transport
 - Improve Documentation (Here's comes the most boring part~) #grumble
 
 ## Contributing
