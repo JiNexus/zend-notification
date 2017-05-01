@@ -363,6 +363,11 @@ $notification->setTransport('inMemory');
 $notification->send();
 ```
 
+## Snapshots
+
+![snapshot-01](https://cloud.githubusercontent.com/assets/6903966/25578973/242ff800-2ea6-11e7-929a-f3c48b629424.png)
+![snapshot-02](https://cloud.githubusercontent.com/assets/6903966/25578972/242e6ba2-2ea6-11e7-913e-9de80ac788aa.png)
+
 ## To Do's
 
 - Create a Unit Test
