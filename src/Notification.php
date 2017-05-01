@@ -709,12 +709,13 @@ class Notification
                 $transport->send($this->message);
                 break;
 
-            case Notification::TRANSPORT_FILE:
+            /*case Notification::TRANSPORT_FILE:
+                // Experimental
                 $transport = new Transport\File();
                 $options = new Transport\FileOptions($this->getFileTransportOptions());
                 $transport->setOptions($options);
                 $transport->send($this->message);
-                break;
+                break;*/
 
             case Notification::TRANSPORT_IN_MEMORY:
                 $transport = new Transport\InMemory();
