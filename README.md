@@ -77,7 +77,7 @@ use JiNexus\Zend\Notification\Notification;
 $notification = new Notification();
 $notification->setFrom('sender@example.com', 'Sender Name')
     ->setTo(['recipientOne@example.com', 'recipientTwo@example.com'], 'Common Name')
-    ->setSubject('What is sense of superiority?')
+    ->setSubject('What makes me superior?')
     ->setContent(
         'The fact that I don\'t believe that I\'m better than anyone else 
         gives me an inevitable sense of superiority.'
@@ -188,7 +188,112 @@ $notification->setAttachments([
 ]);
 ```
 
+## Advance Usage
 
+Advance usage allows you to assemble your own layout and set the right template to be your email's content. 
+`JiNexus/Notification` uses `Cerberus-Responsive` as a sample base email template. 
+Refer to the `src/view/layout` and `src/view/template`
+
+To do this all you have is follow the example below:
+
+```php
+<?php 
+use JiNexus\Zend\Notification\Notification;
+
+$notification = new Notification();
+$notification->setFrom('sender@example.com', 'Sender Name')
+    ->setTo('recipient@example.com', 'Recipient Name')
+    ->setSubject('Sample Subject')
+    ->assemble()
+    ->send();
+```
+
+By default `JiNexus/Notification` will look to the built in configuration under `config/notification.global.php`
+to feed the `assemble()` required configs. To overwrite this default configuration, you have to call the
+`setConfig()` method and pass your own array of configs.
+
+To do this all you have is follow the example below:
+
+```php
+<?php 
+use JiNexus\Zend\Notification\Notification;
+
+$notification = new Notification();
+$notification->setFrom('sender@example.com', 'Sender Name')
+    ->setTo('recipient@example.com', 'Recipient Name')
+    ->setSubject('Sample Subject')
+    ->setConfig([
+            'notification' => [
+                'footer' => __DIR__ . '/src/view/layout/footer.phtml',
+                'header' => __DIR__ . '/src/view/layout/header.phtml',
+                'layout' => __DIR__ . '/src/view/layout/layout.phtml',
+                'template' => __DIR__ . '/src/view/template/confirmation-email.phtml',
+            ]
+        ])
+    ->assemble()
+    ->send();
+```
+
+*Must: Method chaining on the available methods specifically `setConfig()`, `assemble()` and `send()` has their own precedence to follow, 
+they must be called in the right order:*
+
+ - If you want to call `setConfig()`, it must be called before `assemble()` method.
+ - If you want to call `assemble()`, it must be called before `send()` method.
+ - And lastly, `send()` method must be called last.
+
+*Note: Array keys are strict and must be followed accordingly, you can replace values as long as it exist.*
+
+### Passing and Parsing a data to the Header - `header.phtml`
+
+```php
+<?php 
+$notification->setHeaderData(['greetings' => 'Hello from the other side!']);
+```
+
+Now you can parse the data to your `header.phtml`, by:
+
+```php
+<?php echo $this->greetings; ?>
+```
+
+### Passing and Parsing a data to the Footer - `footer.phtml`
+
+```php
+<?php 
+$notification->setFooterData([
+    'company' => 'JiNexus Inc.',
+    'address' => 'Cebu City, Cebu, 6000, PH',
+]);
+```
+
+Now you can parse the data to your `footer.phtml`, by:
+
+```php
+<?php echo $this->company; ?>
+<?php echo $this->address; ?>
+
+```
+
+### Passing and Parsing a data to the Template - `any-email-template.phtml`
+
+```php
+<?php 
+$notification->setTemplateData([
+    'fullName' => 'Jimvirle Calago',
+    'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    'token' => '$2y$10$2pebvLw6RhmqiybYg6qNr.F.lCIEYf0HzPrKAxNTsrRZLRI5uhh1m'
+]);
+```
+
+Now you can parse the data to your `any-email-template.phtml`, by:
+
+```php
+<?php echo $this->fullName; ?>
+<?php echo $this->message; ?>
+<?php echo $this->token; ?>
+```
+
+*Must: `setHeaderData()`, `setFooterData()` and `setTemplateData()` must be called before the `assemble()` method.*
 
 ## To Do's
 
